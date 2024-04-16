@@ -1,0 +1,170 @@
+[
+  {
+    "mensajes": [
+      {
+        "correoEmisor": "admin@gmail.com",
+        "correoReceptor": "correo2@gmail.com",
+        "asunto": "Enviame tu reporte",
+        "mensaje": "Envieme su reporte o lo meo joven",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "correo2@gmail.com",
+        "correoReceptor": "admin@gmail.com",
+        "asunto": "Mi reporte",
+        "mensaje": "Aqui esta mi reporte pero, me mea?",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "admin@gmail.com",
+        "correoReceptor": "correo2@gmail.com",
+        "asunto": "Respuesta",
+        "mensaje": "que..?",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "correo2@gmail.com",
+        "correoReceptor": "admin@gmail.com",
+        "asunto": "Era broma?",
+        "mensaje": "no se, perdon",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "admin@gmail.com",
+        "correoReceptor": "correo2@gmail.com",
+        "asunto": "eres un esputido y un tonoto",
+        "mensaje": "vlokeado",
+        "recibido": true,
+        "leido": true
+      }
+    ]
+  },
+  {
+    "mensajes": [
+      {
+        "correoEmisor": "correo@gmail.com",
+        "correoReceptor": "admin@gmail.com",
+        "asunto": "Primer asunto",
+        "mensaje": "Pruebaaa",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "admin@gmail.com",
+        "correoReceptor": "correo@gmail.com",
+        "asunto": "respondiento a tu mensaje...",
+        "mensaje": "sexo.",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "correo@gmail.com",
+        "correoReceptor": "admin@gmail.com",
+        "asunto": "respuesta nueva",
+        "mensaje": "en efecto, sexo.",
+        "recibido": true,
+        "leido": true
+      }
+    ]
+  },
+  {
+    "mensajes": [
+      {
+        "correoEmisor": "correo@gmail.com",
+        "correoReceptor": "admin@gmail.com",
+        "asunto": "asunto 2",
+        "mensaje": "fafafafafafa",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "admin@gmail.com",
+        "correoReceptor": "correo@gmail.com",
+        "asunto": "fesil nabidad",
+        "mensaje": "asd",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "correo@gmail.com",
+        "correoReceptor": "admin@gmail.com",
+        "asunto": "mucha garcia",
+        "mensaje": "gei",
+        "recibido": true,
+        "leido": true
+      }
+    ]
+  },
+  {
+    "mensajes": [
+      {
+        "correoEmisor": "correo@gmail.com",
+        "correoReceptor": "admin@gmail.com",
+        "asunto": "asunto 3",
+        "mensaje": "asdasda",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "admin@gmail.com",
+        "correoReceptor": "correo@gmail.com",
+        "asunto": "respondiendo desde java",
+        "mensaje": "holaa",
+        "recibido": true,
+        "leido": true
+      }
+    ]
+  },
+  {
+    "mensajes": [
+      {
+        "correoEmisor": "admin@gmail.com",
+        "correoReceptor": "sexito@gmail.com",
+        "asunto": "Nuevo Asunto desde C#",
+        "mensaje": "Espero que funcione diositooo",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "admin@gmail.com",
+        "correoReceptor": "sexito@gmail.com",
+        "asunto": "Nueva resuesta desde c#",
+        "mensaje": "esto si deberia funcionaaar",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "sexito@gmail.com",
+        "correoReceptor": "admin@gmail.com",
+        "asunto": "hola",
+        "mensaje": "respondiendoo",
+        "recibido": true,
+        "leido": true
+      }
+    ]
+  },
+  {
+    "mensajes": [
+      {
+        "correoEmisor": "goku@gmail.com",
+        "correoReceptor": "admin@gmail.com",
+        "asunto": "desbloqueamewe",
+        "mensaje": "asdasda",
+        "recibido": true,
+        "leido": true
+      },
+      {
+        "correoEmisor": "admin@gmail.com",
+        "correoReceptor": "goku@gmail.com",
+        "asunto": "no",
+        "mensaje": "no",
+        "recibido": true,
+        "leido": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "password": "asd",
+    "whoAmI": "admin",
+    "locked": false
+  },
+  {
+    "name": "correo",
+    "email": "correo@gmail.com",
+    "password": "asd",
+    "whoAmI": "usuario",
+    "locked": true
+  },
+  {
+    "name": "goku",
+    "email": "goku@gmail.com",
+    "password": "123",
+    "whoAmI": "usuario",
+    "locked": false
+  },
+  {
+    "name": "correo2",
+    "email": "correo2@gmail.com",
+    "password": "asd",
+    "whoAmI": "usuario",
+    "locked": true
+  },
+  {
+    "name": "devil",
+    "email": "devilman@gmail.com",
+    "password": "asd",
+    "whoAmI": "usuario",
+    "locked": false
+  },
+  {
+    "name": "adrian",
+    "email": "adrian@gmail.com",
+    "password": "asd",
+    "whoAmI": "usuario",
+    "locked": false
+  }
+]
