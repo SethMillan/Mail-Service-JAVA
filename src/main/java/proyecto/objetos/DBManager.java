@@ -31,7 +31,7 @@ public class DBManager {
         connection.close();
     }
     public Usuario find(String usr, String pass) throws Exception{
-        String sql ="SELECT * FROM Usuario WHERE name = ? AND password = SHA1(?);";
+        String sql ="SELECT * FROM Usuario WHERE email = ? AND password = SHA1(?);";
         Usuario usuario = null;
         open();
         PreparedStatement ps = connection.prepareStatement(sql);

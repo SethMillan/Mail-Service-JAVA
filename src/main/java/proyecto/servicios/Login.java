@@ -9,7 +9,10 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import proyecto.objetos.DBManager;
 import proyecto.objetos.Usuario;
 
 /**
@@ -338,22 +341,25 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseExited
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        boolean bandera = false;
         if(jTextField1.getForeground().equals(new Color(102,102,102))||jTextField2.getForeground().equals(new Color(102,102,102))||jPasswordField1.getForeground().equals(new Color(102,102,102))){
             JOptionPane.showMessageDialog(null, "Ingresa datos validos");
         }
         else{
-            //List<UsuarioBase> usureros = CreateAcount.leerJSON();
-            //for(UsuarioBase us : usureros){
-             //   JOptionPane.showMessageDialog(null,us.getPassword()+jPasswordField1.getText());
-               // if(us.getName().equals(jTextField1.getText()) && us.getEmail().equals(jTextField2.getText()) && us.getPassword().equals(jPasswordField1.getText())){
-                    new Mail(jTextField2.getText()).setVisible(true);
-                    dispose();
-                 //   bandera = true;
-                //}
-            //}
+            DBManager db = new DBManager();
+            try {
+                Usuario usr = db.find(jTextField2.getText(), jPasswordField1.getText());
+                if(usr!=null){
+                   new Mail(jTextField2.getText()).setVisible(true);
+                   dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuario no encontrado");    
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error inesperado al buscar usuario");
+            }
+            
         }
-        //if(!bandera) JOptionPane.showMessageDialog(null, "No se encontro tu usuario");
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
