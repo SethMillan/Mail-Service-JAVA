@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto.servicios;
 
 import com.google.gson.Gson;
@@ -12,12 +7,10 @@ import java.awt.Color;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import proyecto.objetos.Admin;
+import proyecto.objetos.DBManager;
 import proyecto.objetos.Usuario;
-import proyecto.objetos.UsuarioBase;
 
 /**
  *
@@ -62,6 +55,7 @@ public class CreateAcount extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -73,7 +67,7 @@ public class CreateAcount extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("x");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -196,6 +190,31 @@ public class CreateAcount extends javax.swing.JFrame {
         jLabel1.setText("Registro");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 336, 44));
 
+        jLabel2.setForeground(new java.awt.Color(135, 135, 135));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("¿Tienes una cuenta? Inicia Sesión");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jLabel2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jLabel2FocusLost(evt);
+            }
+        });
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel2MouseExited(evt);
+            }
+        });
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 330, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,7 +223,7 @@ public class CreateAcount extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
         );
 
         pack();
@@ -269,17 +288,20 @@ public class CreateAcount extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingresa datos validos");
         }
         else{
-            List<UsuarioBase> usuarios = leerJSON();
-            
-            
-            name = jTextField1.getText();
-            email = jTextField2.getText();
-            password = jPasswordField1.getText();
-            usuarios.add(new Usuario(name,email,password));
-            escribirJSON(usuarios);
-            new Login(name,email,password).setVisible(true);
-            dispose();
-        }
+            DBManager db = new DBManager();
+            try {
+                if(db.addUsr(jTextField1.getText(),jTextField2.getText(),jPasswordField1.getText())>0){
+                    JOptionPane.showMessageDialog(null, "Registrado");
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se ha registrado");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error");
+            }
+                    new Login(name,email,password).setVisible(true);
+                    dispose();
+            }
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
@@ -289,6 +311,27 @@ public class CreateAcount extends javax.swing.JFrame {
     private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
         jLabel10.setForeground(new Color(153,153,153));
     }//GEN-LAST:event_jLabel10MouseExited
+
+    private void jLabel2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLabel2FocusGained
+
+    }//GEN-LAST:event_jLabel2FocusGained
+
+    private void jLabel2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLabel2FocusLost
+
+    }//GEN-LAST:event_jLabel2FocusLost
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        new Login().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+        jLabel2.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel2MouseEntered
+
+    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+        jLabel2.setForeground(new Color(153,153,153));
+    }//GEN-LAST:event_jLabel2MouseExited
 
     /**
      * @param args the command line arguments
@@ -328,6 +371,7 @@ public class CreateAcount extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -343,12 +387,12 @@ public class CreateAcount extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-public static List<UsuarioBase> leerJSON() {
+public static List<Usuario> leerJSON() {
         Gson gson = new Gson();
 
         try {
             FileReader reader = new FileReader("D:/Aprendizaje/TAP/TAP-ProyectoCorreos/usuarios.json");
-            List<UsuarioBase> usuarios = gson.fromJson(reader, new TypeToken<List<UsuarioBase>>(){}.getType());
+            List<Usuario> usuarios = gson.fromJson(reader, new TypeToken<List<Usuario>>(){}.getType());
             
             reader.close();
             return usuarios;
@@ -358,7 +402,7 @@ public static List<UsuarioBase> leerJSON() {
 
         return null;
     }
-    public static void escribirJSON(List<UsuarioBase> usuarios) {
+    public static void escribirJSON(List<Usuario> usuarios) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(usuarios);
         try {

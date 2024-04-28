@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
-import proyecto.objetos.UsuarioBase;
+import proyecto.objetos.Usuario;
 
 /**
  *
@@ -343,17 +343,17 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingresa datos validos");
         }
         else{
-            List<UsuarioBase> usureros = CreateAcount.leerJSON();
-            for(UsuarioBase us : usureros){
-                JOptionPane.showMessageDialog(null,us.getPassword()+jPasswordField1.getText());
-                if(us.getName().equals(jTextField1.getText()) && us.getEmail().equals(jTextField2.getText()) && us.getPassword().equals(jPasswordField1.getText())){
+            //List<UsuarioBase> usureros = CreateAcount.leerJSON();
+            //for(UsuarioBase us : usureros){
+             //   JOptionPane.showMessageDialog(null,us.getPassword()+jPasswordField1.getText());
+               // if(us.getName().equals(jTextField1.getText()) && us.getEmail().equals(jTextField2.getText()) && us.getPassword().equals(jPasswordField1.getText())){
                     new Mail(jTextField2.getText()).setVisible(true);
                     dispose();
-                    bandera = true;
-                }
-            }
+                 //   bandera = true;
+                //}
+            //}
         }
-        if(!bandera) JOptionPane.showMessageDialog(null, "No se encontro tu usuario");
+        //if(!bandera) JOptionPane.showMessageDialog(null, "No se encontro tu usuario");
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained

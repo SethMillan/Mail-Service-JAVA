@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 import proyecto.objetos.Conversacion;
 import proyecto.objetos.Mensaje;
 import proyecto.objetos.Usuario;
-import proyecto.objetos.UsuarioBase;
 
 /**
  *
@@ -178,9 +177,9 @@ public class PanelMensaje extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        List<UsuarioBase> usuarios = CreateAcount.leerJSON();
+        List<Usuario> usuarios = CreateAcount.leerJSON();
         int index = 0;
-        for(UsuarioBase usuario: usuarios){
+        for(Usuario usuario: usuarios){
             if(usuario.getEmail().equals(origen))usuarios.get(index).setLocked(true);
             index++;
         }

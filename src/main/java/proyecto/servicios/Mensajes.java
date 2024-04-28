@@ -24,7 +24,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import proyecto.objetos.Conversacion;
 import proyecto.objetos.Mensaje;
-import proyecto.objetos.UsuarioBase;
+import proyecto.objetos.Usuario;
 import static proyecto.servicios.Mail.correoLog;
 
 /**
@@ -286,9 +286,9 @@ public class Mensajes extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        List<UsuarioBase> usureros = CreateAcount.leerJSON();
-        UsuarioBase usu= new UsuarioBase();
-        for (UsuarioBase us : usureros) {
+        List<Usuario> usureros = CreateAcount.leerJSON();
+        Usuario usu= new Usuario();
+        for (Usuario us : usureros) {
             if (us.getEmail().equals(correoLog)) {
                 usu = us;
             }

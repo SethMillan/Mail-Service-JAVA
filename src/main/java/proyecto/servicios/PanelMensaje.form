@@ -8,11 +8,6 @@
       </Properties>
     </Component>
     <Container class="org.edisoncor.gui.panel.PanelImage" name="panelImage2">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\milla\Downloads\check_mark.png"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -112,7 +107,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Bloquear usuario"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
       <Events>
@@ -140,11 +135,6 @@
       </Constraints>
     </Component>
     <Container class="org.edisoncor.gui.panel.PanelImage" name="panelRecibido">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\milla\Downloads\check_mark.png"/>
-        </Property>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="420" y="90" width="20" height="20"/>
@@ -165,11 +155,6 @@
       </Layout>
     </Container>
     <Container class="org.edisoncor.gui.panel.PanelImage" name="panelLeido">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\milla\Downloads\check_mark.png"/>
-        </Property>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="400" y="90" width="20" height="20"/>

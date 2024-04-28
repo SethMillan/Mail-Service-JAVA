@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto.servicios;
 
 import com.google.gson.Gson;
@@ -33,7 +28,7 @@ import javax.swing.JTabbedPane;
 import org.edisoncor.gui.panel.PanelLlamada;
 import proyecto.objetos.Conversacion;
 import proyecto.objetos.Mensaje;
-import proyecto.objetos.UsuarioBase;
+import proyecto.objetos.Usuario;
 
 public class Mail extends javax.swing.JFrame {
 
@@ -571,7 +566,7 @@ public class Mail extends javax.swing.JFrame {
         grid.setRows(leerJSON().size());
         int index = 0;
 
-        for (UsuarioBase user : CreateAcount.leerJSON()) {
+        for (Usuario user : CreateAcount.leerJSON()) {
             if (!user.getName().equals("admin")) {
                 PanelUsuario panelUser = new PanelUsuario(user.getName(), user.getEmail(), user.isLocked());
                 jPanelUsuarios.add(panelUser);
@@ -661,9 +656,9 @@ public class Mail extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseExited
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        List<UsuarioBase> usureros = CreateAcount.leerJSON();
-        UsuarioBase usu= new UsuarioBase();
-        for (UsuarioBase us : usureros) {
+        List<Usuario> usureros = CreateAcount.leerJSON();
+        Usuario usu= new Usuario();
+        for (Usuario us : usureros) {
             if (us.getEmail().equals(correoLog)) {
                 usu = us;
             }

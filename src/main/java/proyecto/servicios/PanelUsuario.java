@@ -7,7 +7,7 @@ package proyecto.servicios;
 
 import java.awt.Color;
 import java.util.List;
-import proyecto.objetos.UsuarioBase;
+import proyecto.objetos.Usuario;
 
 /**
  *
@@ -80,9 +80,9 @@ public class PanelUsuario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        List<UsuarioBase> usuarios = CreateAcount.leerJSON();
+        List<Usuario> usuarios = CreateAcount.leerJSON();
         int indice =0;
-        for(UsuarioBase usuario: usuarios){
+        for(Usuario usuario: usuarios){
             if(usuario.getEmail().equals(email)){
                 usuario.setLocked(!islocked);
             }
