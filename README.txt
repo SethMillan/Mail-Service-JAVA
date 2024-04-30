@@ -10,50 +10,38 @@ Este proyecto consiste en una aplicación que permite enviar correos o mensajes 
 - Visualización de mensajes para el administrador, ordenados por fecha.
 - Bloqueo de usuarios para dejar de recibir mensajes.
 - Descarga de Excel para el administrador con registros de correos recibidos, indicando estado de lectura y respuesta.
-- Descarga de PDF para los usuarios con el mensaje y la respuesta recibidos.
+- Descarga de PDF para los usuarios/administrador con el mensaje y la respuesta recibidos.
 
 ## Interfaz de Usuario
 
 La interfaz de usuario constará de:
 
 - **Formulario de Contacto:** Permitirá a los usuarios redactar un asunto y un mensaje para enviar al administrador.
-- **Historial de Mensajes:** Mostrará todos los mensajes enviados por el usuario, indicando su estado de lectura y respuesta.
-- **Lista de Mensajes para el Administrador:** Mostrará todos los mensajes recibidos, ordenados por fecha. Los mensajes no leídos se destacarán en negritas y con un icono indicando su estado. Los mensajes respondidos también se marcarán con un icono adicional.
+- **Listado de Mensajes:** Mostrará todos los mensajes enviados por el usuario, indicando su estado de lectura y respuesta.
+- **Lista de Usuarios para el Administrador:** Mostrará todos los usuarios, ordenados por fecha. Los usuarios bloqueados se indicaran como tal.
 - **Opciones de Bloqueo de Usuarios:** Permitirá al administrador bloquear usuarios para dejar de recibir mensajes de ellos.
-- **Descarga de Archivos:** Tanto el administrador como los usuarios podrán descargar archivos Excel (para el administrador) y PDF (para los usuarios) con la información de los mensajes recibidos.
+- **Descarga de Archivos:** Tanto el administrador como los usuarios podrán descargar archivos Excel (para el administrador) y PDF (para los usuarios y el administrador) con la información de los mensajes recibidos.
 
 ## Tecnologías Utilizadas
 
-- **Frontend:** HTML, CSS, JavaScript (con framework como React o Angular).
-- **Backend:** Node.js con Express u otro framework para el servidor.
-- **Base de Datos:** MongoDB, MySQL u otro sistema de gestión de bases de datos relacional o no relacional.
-- **Librerías Adicionales:** Se podrían utilizar librerías como nodemailer para el envío de correos electrónicos, y librerías para la generación de archivos Excel y PDF.
+- **Frontend:** Java Swing
+- **Backend:** Java puro y duro
+- **Base de Datos:** MySQL
+- **Librerías Adicionales:** lombook, itext7, edisonCore, Gson, mysql-connector-j
 
 ## Diagrama de Flujo
 
-A continuación se muestra un diagrama de flujo que representa las interacciones entre el usuario y el sistema:
+A continuación se muestra un diagrama de flujo que representa la base de datos:
 
 [Diagrama de Flujo](link_al_diagrama_de_flujo)
+
+## Comandos para crear la base de datos (copiar y pegar)
 
 ## Instalación y Uso
 
 1. Clonar el repositorio desde GitHub.
-2. Instalar las dependencias del frontend y backend.
-3. Configurar la conexión a la base de datos y el servidor de correo electrónico.
-4. Ejecutar el servidor backend.
-5. Ejecutar el servidor frontend.
-6. Acceder a la aplicación desde el navegador.
+2. Tener instalado NetBeans para poder visualizar la interfaz de JavaSwing.
+3. Crear la base de datos local con los comandos que se escribieron con anterioridad.
+4. Verifica que el jdk del proyecto y el tuyo coincidan
+5. Ejecutar la aplicacion
 
-## Contribución
-
-Las contribuciones al proyecto son bienvenidas. Si desea contribuir, siga estos pasos:
-
-1. Realice un fork del repositorio.
-2. Cree una rama para su función (`git checkout -b feature/NombreDeLaFuncion`).
-3. Realice sus cambios y haga commits (`git commit -am 'Agregar una nueva función'`).
-4. Haga push a la rama (`git push origin feature/NombreDeLaFuncion`).
-5. Cree una solicitud de extracción en GitHub.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Para más detalles, consulte el archivo `LICENSE`.
