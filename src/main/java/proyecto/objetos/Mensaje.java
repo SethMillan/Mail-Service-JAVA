@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 @Entity
@@ -17,10 +18,11 @@ import lombok.ToString;
 @NamedQueries({
     @NamedQuery(name = "Mensaje.findAll", query = "SELECT u FROM Mensaje u"),
     @NamedQuery(name = "Mensaje.findByIdMensaje", query = "SELECT u FROM Mensaje u WHERE u.id = :id"),
-    @NamedQuery(name = "Mensaje.findAllByIdConversacion", query = "SELECT u FROM Mensaje u WHERE u.idConversacion")
+    @NamedQuery(name = "Mensaje.findAllByIdConversacion", query = "SELECT u FROM Mensaje u WHERE u.idConversacion = idConversacion")
 })
 
 @Data
+@AllArgsConstructor
 @ToString
 public class Mensaje implements Serializable{
     @Id    

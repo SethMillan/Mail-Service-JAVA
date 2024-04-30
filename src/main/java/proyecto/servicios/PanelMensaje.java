@@ -5,17 +5,12 @@
  */
 package proyecto.servicios;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import java.awt.Color;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import proyecto.objetos.Conversacion;
+import proyecto.objetos.DBManager;
 import proyecto.objetos.Mensaje;
 import proyecto.objetos.Usuario;
 
@@ -177,14 +172,27 @@ public class PanelMensaje extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        List<Usuario> usuarios = CreateAcount.leerJSON();
-        int index = 0;
+        try {
+            DBManager db = new DBManager();
+            List<Usuario> usuarios;
+            usuarios = db.listAllUsrs();
+            int index = 0;
         for(Usuario usuario: usuarios){
-            if(usuario.getEmail().equals(origen))usuarios.get(index).setLocked(true);
+            if(usuario.getEmail().equals(origen)) {
+                if(usuario.isLocked()){ 
+                    db.modificarLockedUsr("False", usuario.getId());
+                        JOptionPane.showMessageDialog(null, "EL USUARIO "+destino+" HA SIDO Desbloqueado");
+                        
+                }else{
+                    JOptionPane.showMessageDialog(null, "EL USUARIO "+destino+" HA SIDO Bloqueado");
+                    db.modificarLockedUsr("True", usuario.getId());
+                }
+            }
             index++;
         }
-        CreateAcount.escribirJSON(usuarios);
-        JOptionPane.showMessageDialog(null, "EL USUARIO "+destino+" HA SIDO BLOQUEADO");
+        } catch (Exception ex) {
+            Logger.getLogger(PanelMensaje.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
@@ -211,7 +219,7 @@ public class PanelMensaje extends javax.swing.JPanel {
     private org.edisoncor.gui.panel.PanelImage panelLeido;
     private org.edisoncor.gui.panel.PanelImage panelRecibido;
     // End of variables declaration//GEN-END:variables
-public static void actualizarJSON(Mensaje nuevoMensaje, int indiceConversacion) {
+/*public static void actualizarJSON(Mensaje nuevoMensaje, int indiceConversacion) {
         List<Conversacion> conversaciones = leerJSON();
         if (conversaciones != null && indiceConversacion >= 0 && indiceConversacion < conversaciones.size()) {
             conversaciones.get(indiceConversacion).getMensajes().add(nuevoMensaje);
@@ -256,5 +264,5 @@ public static void actualizarJSON(Mensaje nuevoMensaje, int indiceConversacion) 
         conversaciones.add(nuevaConversacion);
 
         escribirJSON(conversaciones);
-    }
+    }*/
 }

@@ -387,7 +387,7 @@ public class CreateAcount extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-public static List<Usuario> leerJSON() {
+/*public static List<Usuario> leerJSON() {
         Gson gson = new Gson();
 
         try {
@@ -413,7 +413,7 @@ public static List<Usuario> leerJSON() {
             e.printStackTrace();
         }
     }
-
+*/
 
 
 }

@@ -12,7 +12,6 @@ proyecto/servicios/Mail$14.class
 proyecto/servicios/Login.class
 proyecto/servicios/Login$4.class
 proyecto/objetos/Conversacion.class
-proyecto/servicios/CreateAcount$9.class
 proyecto/servicios/Responder$2.class
 proyecto/servicios/Mail$4.class
 proyecto/servicios/NewMain.class
@@ -20,11 +19,8 @@ proyecto/servicios/Mail$7.class
 proyecto/objetos/Usuario.class
 proyecto/servicios/CreateAcount$1.class
 proyecto/servicios/Mensajes$2.class
-proyecto/servicios/Mail$20.class
-proyecto/objetos/controller/UsuarioJpaController.class
 proyecto/servicios/Mail$17.class
 proyecto/servicios/Login$10.class
-proyecto/servicios/PanelMensaje$2.class
 proyecto/servicios/Responder$7.class
 proyecto/servicios/Mail$15.class
 proyecto/servicios/Mensajes$4.class
@@ -54,13 +50,11 @@ proyecto/servicios/Login$13.class
 proyecto/servicios/Mail$12.class
 proyecto/servicios/Login$9.class
 proyecto/servicios/Mensajes$7.class
-proyecto/objetos/controller/exceptions/PreexistingEntityException.class
 proyecto/servicios/Responder$5.class
 proyecto/servicios/Login$1.class
 proyecto/objetos/DBManager.class
 proyecto/servicios/CreateAcount$6.class
 proyecto/servicios/Mail$8.class
-proyecto/objetos/controller/exceptions/IllegalOrphanException.class
 proyecto/servicios/Mail$1.class
 proyecto/servicios/Mail$19.class
 proyecto/servicios/Responder$3.class
@@ -69,7 +63,6 @@ proyecto/servicios/Mail$5.class
 proyecto/servicios/Responder$9.class
 proyecto/servicios/Login$12.class
 proyecto/servicios/Mail.class
-proyecto/objetos/controller/exceptions/NonexistentEntityException.class
 proyecto/objetos/Mensaje.class
 proyecto/servicios/PanelUsuario$1.class
 proyecto/servicios/Mensajes$3.class

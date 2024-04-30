@@ -7,6 +7,8 @@ package proyecto.servicios;
 
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
+import proyecto.objetos.DBManager;
 import proyecto.objetos.Usuario;
 
 /**
@@ -27,9 +29,9 @@ public class PanelUsuario extends javax.swing.JPanel {
         this.islocked = islocked;
         jLabel1.setText("Nombre: "+name);
         jLabel2.setText("Correo: "+email);
-        if(islocked){jLabel3.setText("Estado :Bloqueado");jLabel4.setText("Desbloquear");}else{
+        if(islocked){jLabel3.setText("Estado :Bloqueado");blockBtn.setText("Desbloquear");}else{
             jLabel3.setText("Estado: Normal");
-            jLabel4.setText("Bloquear");
+            blockBtn.setText("Bloquear");
         }
     }
 
@@ -45,7 +47,7 @@ public class PanelUsuario extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        blockBtn = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,60 +64,69 @@ public class PanelUsuario extends javax.swing.JPanel {
         jLabel3.setText("Estado: ");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 326, -1));
 
-        jLabel4.setText("Bloquear");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        blockBtn.setText("Bloquear");
+        blockBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        blockBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                blockBtnMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
+                blockBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
+                blockBtnMouseExited(evt);
             }
         });
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 100, -1));
+        add(blockBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 100, -1));
         add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 520, 10));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        List<Usuario> usuarios = CreateAcount.leerJSON();
-        int indice =0;
-        for(Usuario usuario: usuarios){
-            if(usuario.getEmail().equals(email)){
-                usuario.setLocked(!islocked);
+    private void blockBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtnMouseClicked
+        DBManager db = new DBManager();
+        try{
+            List<Usuario> usuarios = db.listAllUsrs();
+            int indice =0;
+            for(Usuario usuario: usuarios){
+                if(usuario.getEmail().equals(email)){
+                     if(usuario.isLocked()){ 
+                        db.modificarLockedUsr("False", usuario.getId());
+
+                    }else{
+                        db.modificarLockedUsr("True", usuario.getId());
+                    }
+                }
+                usuarios.set(indice, usuario);
+                indice ++;
             }
-            usuarios.set(indice, usuario);
-            indice ++;
+            islocked=!islocked;
+            if(islocked){
+                jLabel3.setText("Estado :Bloqueado");
+                blockBtn.setText("Desbloquear");
+            }else{
+                jLabel3.setText("Estado: Normal");
+                blockBtn.setText("Bloquear");
+            }
+            updateUI();
+            Mail.instancia.updateUsuarios();
+        }catch(Exception e){
+            e.printStackTrace();
         }
-        CreateAcount.escribirJSON(usuarios);
-        islocked=!islocked;
-        if(islocked){
-            jLabel3.setText("Estado :Bloqueado");
-            jLabel4.setText("Desbloquear");
-        }else{
-            jLabel3.setText("Estado: Normal");
-            jLabel4.setText("Bloquear");
-        }
-        updateUI();
-        Mail.instancia.updateUsuarios();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_blockBtnMouseClicked
 
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        jLabel4.setForeground(new Color(251,51,51));
-    }//GEN-LAST:event_jLabel4MouseEntered
+    private void blockBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtnMouseEntered
+        blockBtn.setForeground(new Color(251,51,51));
+    }//GEN-LAST:event_blockBtnMouseEntered
 
-    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
-        jLabel4.setForeground(Color.black);
-    }//GEN-LAST:event_jLabel4MouseExited
+    private void blockBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtnMouseExited
+        blockBtn.setForeground(Color.black);
+    }//GEN-LAST:event_blockBtnMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel blockBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

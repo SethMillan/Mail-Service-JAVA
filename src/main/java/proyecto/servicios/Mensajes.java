@@ -21,8 +21,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyecto.objetos.Conversacion;
+import proyecto.objetos.DBManager;
 import proyecto.objetos.Mensaje;
 import proyecto.objetos.Usuario;
 import static proyecto.servicios.Mail.correoLog;
@@ -32,10 +35,9 @@ import static proyecto.servicios.Mail.correoLog;
  * @author milla
  */
 public class Mensajes extends javax.swing.JFrame {
-    private List<Mensaje> mensajes;
+    private List<Mensaje> msjs;
     private int posX = 0, posY = 0;
     private GridLayout grid = new GridLayout(1,1);
-    private List<Conversacion> conversaciones;
     private String correoLogeado;
     static String correoReceptor;
     private int index ;
@@ -45,34 +47,28 @@ public class Mensajes extends javax.swing.JFrame {
     public Mensajes() {
         initComponents();
     }
-    public Mensajes(List<Mensaje> mensajes, List<Conversacion> conversaciones, String correoLog){
+    public Mensajes(List<Mensaje> msjs, String correoLog){
         initComponents();
         setLocationRelativeTo(null);
         jPanel3.setLayout(grid);
-        this.conversaciones = conversaciones;
         System.out.println("Correo logueado?? -> "+correoLog);    
         this.correoLogeado = correoLog;
-        this.mensajes =  mensajes;
+        this.msjs =  msjs;
         boolean esAdmin =false;
         jPanel3.removeAll();
         
         
-        index = 0;
-        if(correoLogeado.equals(mensajes.get(0).getCorreoEmisor())){
-            correoReceptor=mensajes.get(0).getCorreoReceptor();
+        if(correoLogeado.equals(this.msjs.get(0).getCorreoEmisor())){
+            correoReceptor=this.msjs.get(0).getCorreoReceptor();
         }else{
-            correoReceptor = mensajes.get(0).getCorreoEmisor();
+            correoReceptor = this.msjs.get(0).getCorreoEmisor();
         }
-        for(Conversacion conv : conversaciones){
-            if(mensajes.get(0).equals(conv.getMensajes().get(0)))
-                break;
-            index++;
-        }
+        index = msjs.get(0).getIdConversacion();
         
         List<Mensaje> mensajesOrdenados = new ArrayList<>();
-        mensajesOrdenados = mensajes;
+        mensajesOrdenados = this.msjs;
         Collections.reverse(mensajesOrdenados);
-        grid.setRows(mensajes.size());
+        grid.setRows(this.msjs.size());
         for(Mensaje men: mensajesOrdenados ){
             System.out.println("SI ENTRO AQUI CHILL");
             if(!(men.getCorreoEmisor().equals("admin@gmail.com"))&&Mail.correoLog.equals("admin@gmail.com")) esAdmin = true;
@@ -286,19 +282,26 @@ public class Mensajes extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseExited
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        List<Usuario> usureros = CreateAcount.leerJSON();
-        Usuario usu= new Usuario();
-        for (Usuario us : usureros) {
-            if (us.getEmail().equals(correoLog)) {
-                usu = us;
+        DBManager db = new DBManager();
+        List<Usuario> usureros;
+        try {
+            usureros = db.listAllUsrs();
+            Usuario usu= new Usuario();
+            for (Usuario us : usureros) {
+                if (us.getEmail().equals(correoLog)) {
+                    usu = us;
+                }
             }
+            if (!usu.isLocked()) {
+                new Responder(index).setVisible(true);
+                dispose();
+            }else{
+                JOptionPane.showMessageDialog(null,"Usted esta bloqueado, no podra enviar mensajes hasta que sea desbloqueado");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Mensajes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (!usu.isLocked()) {
-            new Responder(index).setVisible(true);
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(null,"Usted esta bloqueado, no podra enviar mensajes hasta que sea desbloqueado");
-        }
+        
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLabel3FocusGained
@@ -332,10 +335,10 @@ public class Mensajes extends javax.swing.JFrame {
             // Formatear la fecha y hora en un formato deseado
             SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
             String fechaHoraFormateada = formato.format(fechaHoraActual);
-            PdfWriter writer = new PdfWriter("D:/Aprendizaje/TAP/TAP-ProyectoCorreos/"+correoReceptor+" "+fechaHoraFormateada+".pdf");
+            PdfWriter writer = new PdfWriter("/home/seth/Documentos/DocumentosGeneradosXD/"+correoReceptor+" "+fechaHoraFormateada+".pdf");
             PdfDocument pdfDoc = new PdfDocument(writer);
             Document document = new Document(pdfDoc);
-            List<Mensaje> mensajecinis = Mail.leerJSON().get(index).getMensajes();
+            List<Mensaje> mensajecinis = msjs;
             Collections.reverse(mensajecinis);
             document.add(new Paragraph("----------------Mensajes-------------------------------"));
             int contador =1;
@@ -351,7 +354,7 @@ public class Mensajes extends javax.swing.JFrame {
             }
             
             document.close();
-            Desktop.getDesktop().open(new File("D:/Aprendizaje/TAP/TAP-ProyectoCorreos/"+correoReceptor+" "+fechaHoraFormateada+".pdf"));
+            Desktop.getDesktop().open(new File("/home/seth/Documentos/DocumentosGeneradosXD/"+correoReceptor+" "+fechaHoraFormateada+".pdf"));
             
         } catch (Exception e) {
             e.printStackTrace();

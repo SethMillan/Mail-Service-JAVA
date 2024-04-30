@@ -15,17 +15,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import proyecto.objetos.Conversacion;
+import proyecto.objetos.DBManager;
 import proyecto.objetos.Mensaje;
-import static proyecto.servicios.Mail.escribirJSON;
-import static proyecto.servicios.Mail.leerJSON;
+
 
 /**
  *
  * @author milla
  */
 public class PanelConversacion extends javax.swing.JPanel {
-    private Conversacion conversacion;
     private String lector;
+    private List<Mensaje> msjs;
     private static String nombreArchivo;
     private static int index;
     /**
@@ -34,22 +34,22 @@ public class PanelConversacion extends javax.swing.JPanel {
     public PanelConversacion() {
         initComponents();
     }
-    public PanelConversacion(Conversacion conversacion, String lector, int index){
-        nombreArchivo = "D:/Aprendizaje/TAP/TAP-ProyectoCorreos/database.json" ;
-        this.conversacion=conversacion;
+    public PanelConversacion(List<Mensaje> msjs, String lector, int index){
+        //nombreArchivo = "D:/Aprendizaje/TAP/TAP-ProyectoCorreos/database.json" ;
         this.lector = lector;
+        this.msjs = msjs;
         this.index = index;
         initComponents();
         this.index=0;
-        for(Conversacion conversaciones: leerJSON()){
-            if(conversaciones.equals(conversacion))
-                break;
-            index++;
-        }
-        Mensaje mensaje = conversacion.getMensajes().get(0);
-        if(conversacion.getMensajes().get(conversacion.getMensajes().size()-1).getCorreoEmisor().equals(lector)){
+        //EN TEORIA ESTO DEBERIA DE FUNCIONAR CON NORMALIDAD, AHORA ESTAMOS RECIBIENDO 
+        //UNA LISTA DE MENSAJES, ANTES ERA UNA CONVERSACION QUE TENIA UNA LISTA DE MENSAJES
+        //SO, DONDE TENGA Conversacion.getMensajes() se reemplaza por un msjs que es
+        //directamente la lista, de modo que la logica sigue siendo la misma y solo hacemos el cambio 
+        
+         Mensaje mensaje = msjs.get(0);
+        if(msjs.get(msjs.size()-1).getCorreoEmisor().equals(lector)){
             setBackground(new Color(204,204,204));
-        }else if(conversacion.getMensajes().get(conversacion.getMensajes().size()-1).isLeido()){
+        }else if(msjs.get(msjs.size()-1).isLeido()){
             setBackground(new Color(204,204,204));
         }
         jLabel2.setText(mensaje.getCorreoEmisor());
@@ -86,30 +86,20 @@ public class PanelConversacion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-       index=0;
-        for(Conversacion conversaciones: leerJSON()){
-            if(conversaciones.equals(conversacion))
-                break;
-            index++;
+        DBManager db = new DBManager();
+        try{
+            index = msjs.get(0).getIdConversacion();
+            System.out.println("Index "+index);
+            setBackground(new Color(204,204,204));
+            if(msjs.get(msjs.size()-1).getCorreoReceptor().equals(lector)){
+               //AQUI ES DONDE SE DEBERIA DE MODIFICAR LA BASE DE DATPS
+               db.modificarLecturaMensaje(msjs.get(0).getIdConversacion());
+            }    
+            new Mensajes(msjs,Mail.correoLog).setVisible(true);
+            Mail.instancia.dispose();
+        }catch(Exception ex){
+            ex.printStackTrace();
         }
-        System.out.println("Index "+index);
-        System.out.println("INDEX REAL -> "+conversacion);
-        setBackground(new Color(204,204,204));
-       List<Conversacion> conversaciones  = new ArrayList<>();
-       conversaciones.addAll(leerJSON());
-       List<Mensaje> msjs = conversaciones.get(index).getMensajes();
-       if(conversacion.getMensajes().get(conversacion.getMensajes().size()-1).getCorreoReceptor().equals(lector)){
-           msjs.get(msjs.size()-1).setLeido(true);
-           conversacion.setMensajes(msjs);
-           conversaciones.set(index, conversacion);
-           System.out.println(conversaciones.get(index));
-           System.out.println("Conversaciones: "+conversaciones);
-           escribirJSON(conversaciones);
-       }
-       //AQUI TIENES QUE ACTUALIZAR EL JSON JEJE 
-       new Mensajes(conversacion.getMensajes(), conversaciones,Mail.correoLog).setVisible(true);
-       Mail.instancia.dispose();
-       
     }//GEN-LAST:event_formMouseClicked
 
 

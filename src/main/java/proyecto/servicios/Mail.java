@@ -27,6 +27,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 import org.edisoncor.gui.panel.PanelLlamada;
 import proyecto.objetos.Conversacion;
+import proyecto.objetos.DBManager;
 import proyecto.objetos.Mensaje;
 import proyecto.objetos.Usuario;
 
@@ -93,7 +94,6 @@ public class Mail extends javax.swing.JFrame {
         jPanelFondo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -101,7 +101,7 @@ public class Mail extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jPanel11 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        btnEnviar = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
@@ -111,10 +111,11 @@ public class Mail extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         panelImage3 = new org.edisoncor.gui.panel.PanelImage();
         jLabel3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        btnTodos = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        btnUsuarios = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         panelImage1 = new org.edisoncor.gui.panel.PanelImage();
         jPanel10 = new javax.swing.JPanel();
@@ -143,7 +144,7 @@ public class Mail extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("x");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -157,10 +158,6 @@ public class Mail extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 40, 41));
 
-        jPanel4.setBackground(new java.awt.Color(53, 55, 75));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 40));
-
         jPanelFondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, -1));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -170,7 +167,7 @@ public class Mail extends javax.swing.JFrame {
         jTextField2.setForeground(new java.awt.Color(153, 153, 153));
         jTextField2.setText("correo@gmail.com");
         jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder("Correo"));
-        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField2FocusGained(evt);
@@ -186,7 +183,7 @@ public class Mail extends javax.swing.JFrame {
         jTextField3.setForeground(new java.awt.Color(153, 153, 153));
         jTextField3.setText("Asunto Urgentemente Importante");
         jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder("Asunto"));
-        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField3FocusGained(evt);
@@ -230,20 +227,20 @@ public class Mail extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(80, 114, 123));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Enviar");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEnviar.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnEnviar.setForeground(new java.awt.Color(204, 204, 204));
+        btnEnviar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnEnviar.setText("Enviar");
+        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
+                btnEnviarMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel8MouseEntered(evt);
+                btnEnviarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel8MouseExited(evt);
+                btnEnviarMouseExited(evt);
             }
         });
 
@@ -251,11 +248,11 @@ public class Mail extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+            .addComponent(btnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(btnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 110, 30));
@@ -312,7 +309,6 @@ public class Mail extends javax.swing.JFrame {
 
         panelImage3.setBackground(new java.awt.Color(102, 102, 102));
         panelImage3.setForeground(new java.awt.Color(153, 0, 153));
-        panelImage3.setIcon(new javax.swing.ImageIcon("C:\\Users\\milla\\Downloads\\icons8-button-100.png")); // NOI18N
         panelImage3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 panelImage3MouseClicked(evt);
@@ -330,12 +326,16 @@ public class Mail extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("New Mail");
-        panelImage3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 80, 20));
+        panelImage3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 40));
+
+        jPanel4.setBackground(new java.awt.Color(53, 55, 75));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelImage3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 40));
 
         jPanel3.add(panelImage3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 140, 40));
 
         jPanel5.setBackground(new java.awt.Color(80, 114, 123));
-        jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel5MouseEntered(evt);
@@ -345,20 +345,20 @@ public class Mail extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Todos");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTodos.setBackground(new java.awt.Color(153, 153, 153));
+        btnTodos.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnTodos.setForeground(new java.awt.Color(204, 204, 204));
+        btnTodos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnTodos.setText("Todos");
+        btnTodos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                btnTodosMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel5MouseEntered(evt);
+                btnTodosMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel5MouseExited(evt);
+                btnTodosMouseExited(evt);
             }
         });
 
@@ -366,17 +366,17 @@ public class Mail extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(btnTodos, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(btnTodos, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 120, 30));
 
         jPanel6.setBackground(new java.awt.Color(80, 114, 123));
-        jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel6MouseEntered(evt);
@@ -386,20 +386,20 @@ public class Mail extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Usuarios");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnUsuarios.setBackground(new java.awt.Color(153, 153, 153));
+        btnUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnUsuarios.setForeground(new java.awt.Color(204, 204, 204));
+        btnUsuarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnUsuarios.setText("Usuarios");
+        btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                btnUsuariosMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
+                btnUsuariosMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
+                btnUsuariosMouseExited(evt);
             }
         });
 
@@ -407,11 +407,11 @@ public class Mail extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 120, 30));
@@ -420,7 +420,7 @@ public class Mail extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Cerrar Sesión");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -433,8 +433,6 @@ public class Mail extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 120, 30));
-
-        panelImage1.setIcon(new javax.swing.ImageIcon("C:\\Users\\milla\\Downloads\\log-out-icon.png")); // NOI18N
 
         javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
         panelImage1.setLayout(panelImage1Layout);
@@ -450,7 +448,7 @@ public class Mail extends javax.swing.JFrame {
         jPanel3.add(panelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 30, 30));
 
         jPanel10.setBackground(new java.awt.Color(80, 114, 123));
-        jPanel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel10MouseEntered(evt);
@@ -520,19 +518,19 @@ public class Mail extends javax.swing.JFrame {
     }//GEN-LAST:event_panelImage3MouseExited
 
     private void jPanel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseEntered
-        jLabel5.setForeground(Color.white);
+        btnTodos.setForeground(Color.white);
     }//GEN-LAST:event_jPanel5MouseEntered
 
     private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
-        jLabel5.setForeground(new Color(204, 204, 204));
+        btnTodos.setForeground(new Color(204, 204, 204));
     }//GEN-LAST:event_jPanel5MouseExited
 
     private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
-        jLabel4.setForeground(Color.white);
+        btnUsuarios.setForeground(Color.white);
     }//GEN-LAST:event_jPanel6MouseEntered
 
     private void jPanel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseExited
-        jLabel4.setForeground(new Color(204, 204, 204));
+        btnUsuarios.setForeground(new Color(204, 204, 204));
     }//GEN-LAST:event_jPanel6MouseExited
 
     private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
@@ -543,58 +541,73 @@ public class Mail extends javax.swing.JFrame {
         jLabel2.setForeground(new Color(204, 204, 204));
     }//GEN-LAST:event_jLabel2MouseExited
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        jTabbedPane1.setSelectedIndex(1);
-        jPanel12.removeAll();
-        grid.setRows(leerJSON().size());
-        int index = 0;
-
-        for (Conversacion conversaciones : leerJSON()) {
-            PanelConversacion panelConv = new PanelConversacion(conversaciones, correoEmisor, index);
-            Mensaje msj = conversaciones.getMensajes().get(0);
-            if (msj.getCorreoEmisor().equals(correoEmisor) || msj.getCorreoReceptor().equals(correoEmisor)) {
-                jPanel12.add(panelConv);
+    private void btnTodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTodosMouseClicked
+        DBManager db = new DBManager();
+        
+        try{
+            jTabbedPane1.setSelectedIndex(1);
+            jPanel12.removeAll();
+            grid.setRows(db.countConversacion());
+            int index = 0;
+            for (int i = 1; i<= db.countConversacion();i++) {
+                System.out.println(db.countConversacion());
+                System.out.println(i);
+                List<Mensaje> msjs = db.findMensajesByConversacion(i);
+                System.out.println(msjs);
+                PanelConversacion panelConv = new PanelConversacion(msjs, correoEmisor, index);
+                Mensaje msj = msjs.get(0);
+                if (msj.getCorreoEmisor().equals(correoEmisor) || msj.getCorreoReceptor().equals(correoEmisor)) {
+                    jPanel12.add(panelConv);
+                }
+                index++;
             }
-            index++;
+            jPanel12.updateUI();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al listar todo");
         }
-        jPanel12.updateUI();
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_btnTodosMouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        jTabbedPane1.setSelectedIndex(2);
-        jPanelUsuarios.removeAll();
-        grid.setRows(leerJSON().size());
-        int index = 0;
-
-        for (Usuario user : CreateAcount.leerJSON()) {
-            if (!user.getName().equals("admin")) {
-                PanelUsuario panelUser = new PanelUsuario(user.getName(), user.getEmail(), user.isLocked());
-                jPanelUsuarios.add(panelUser);
+    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
+        try{
+            jTabbedPane1.setSelectedIndex(2);
+            DBManager db = new DBManager();
+            jPanelUsuarios.removeAll();
+            grid.setRows(db.countUsrs());
+            int index = 0;
+            for (Usuario user : db.listAllUsrs()) {
+                if (!user.getName().equals("admin")) {
+                    PanelUsuario panelUser = new PanelUsuario(user.getName(), user.getEmail(), user.isLocked());
+                    jPanelUsuarios.add(panelUser);
+                }
+                index++;
             }
-            index++;
+            jPanelUsuarios.updateUI();
+        }catch(Exception ex){
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "ERROR AL CONSULTAR USUARIOS");
         }
-        jPanelUsuarios.updateUI();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_btnUsuariosMouseClicked
 
     private void panelImage3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelImage3MouseClicked
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_panelImage3MouseClicked
 
-    private void jLabel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseEntered
-        jLabel5.setForeground(Color.white);
-    }//GEN-LAST:event_jLabel5MouseEntered
+    private void btnTodosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTodosMouseEntered
+        btnTodos.setForeground(Color.white);
+    }//GEN-LAST:event_btnTodosMouseEntered
 
-    private void jLabel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseExited
-        jLabel5.setForeground(new Color(204, 204, 204));
-    }//GEN-LAST:event_jLabel5MouseExited
+    private void btnTodosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTodosMouseExited
+        btnTodos.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_btnTodosMouseExited
 
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        jLabel4.setForeground(Color.white);
-    }//GEN-LAST:event_jLabel4MouseEntered
+    private void btnUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseEntered
+        btnUsuarios.setForeground(Color.white);
+    }//GEN-LAST:event_btnUsuariosMouseEntered
 
-    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
-        jLabel4.setForeground(new Color(204, 204, 204));
-    }//GEN-LAST:event_jLabel4MouseExited
+    private void btnUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseExited
+        btnUsuarios.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_btnUsuariosMouseExited
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
     }//GEN-LAST:event_jTextField3ActionPerformed
@@ -647,44 +660,47 @@ public class Mail extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField2FocusLost
 
-    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
-        jLabel8.setForeground(Color.white);
-    }//GEN-LAST:event_jLabel8MouseEntered
+    private void btnEnviarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseEntered
+        btnEnviar.setForeground(Color.white);
+    }//GEN-LAST:event_btnEnviarMouseEntered
 
-    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
-        jLabel8.setForeground(new Color(204, 204, 204));
-    }//GEN-LAST:event_jLabel8MouseExited
+    private void btnEnviarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseExited
+        btnEnviar.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_btnEnviarMouseExited
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        List<Usuario> usureros = CreateAcount.leerJSON();
-        Usuario usu= new Usuario();
-        for (Usuario us : usureros) {
-            if (us.getEmail().equals(correoLog)) {
-                usu = us;
+    private void btnEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseClicked
+        DBManager db = new DBManager();
+        Usuario usr;
+        try {
+            usr = db.findUser(correoLog, null);
+            if (!usr.isLocked()) {
+                JOptionPane.showMessageDialog(null, "MENSAJE ENVIADO CORRECTAMENTE");
+                if (!conversaciones.isEmpty()) {
+                    conversaciones.clear();
+                }
+                //ME LA PEREZ PRADOO
+                db.addMensajeNuevo(correoEmisor, jTextField2.getText(), jTextField3.getText(), jTextArea1.getText());
+                jTextField2.setText("correo@gmail.com");
+                jTextField2.setForeground(new Color(153, 153, 153));
+                jTextField3.setText("Asunto Urgentemente Importante");
+                jTextField3.setForeground(new Color(153, 153, 153));
+                jTextArea1.setText("Escribe tu mensaje...");
+                jTextArea1.setForeground(new Color(153, 153, 153));
+                //conversaciones.addAll(leerJSON());
+                //Conversacion conv = new Conversacion();
+                //Mensaje msj = new Mensaje(correoEmisor, jTextField2.getText(), jTextField3.getText(), jTextArea1.getText());
+                //conv.getMensajes().add(msj);
+                //conversaciones.add(conv);
+                //escribirJSON(conversaciones);
+            }else{
+                JOptionPane.showMessageDialog(null,"Usted esta bloqueado no puede enviar mensaje");
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Error al enviar mensaje");
         }
-        if (!usu.isLocked()) {
-            JOptionPane.showMessageDialog(null, "MENSAJE ENVIADO CORRECTAMENTE");
-            if (!conversaciones.isEmpty()) {
-                conversaciones.clear();
-            }
-            conversaciones.addAll(leerJSON());
-            Conversacion conv = new Conversacion();
-            Mensaje msj = new Mensaje(correoEmisor, jTextField2.getText(), jTextField3.getText(), jTextArea1.getText());
-            conv.getMensajes().add(msj);
-            conversaciones.add(conv);
-            escribirJSON(conversaciones);
-            jTextField2.setText("correo@gmail.com");
-            jTextField2.setForeground(new Color(153, 153, 153));
-            jTextField3.setText("Asunto Urgentemente Importante");
-            jTextField3.setForeground(new Color(153, 153, 153));
-            jTextArea1.setText("Escribe tu mensaje...");
-            jTextArea1.setForeground(new Color(153, 153, 153));
-
-        }else{
-            JOptionPane.showMessageDialog(null,"Usted esta bloqueado no puede enviar mensaje");
-        }
-    }//GEN-LAST:event_jLabel8MouseClicked
+        
+    }//GEN-LAST:event_btnEnviarMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
     }//GEN-LAST:event_formWindowOpened
@@ -699,29 +715,28 @@ public class Mail extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         try {
+            DBManager db = new DBManager();
+            
             //LOGICA DEL EXCEL
             Date fechaHoraActual = new Date();
             // Formatear la fecha y hora en un formato deseado
             SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
             String fechaHoraFormateada = formato.format(fechaHoraActual);
-            File csv = new File("D:/Aprendizaje/TAP/TAP-ProyectoCorreos/" + fechaHoraFormateada + "reporte.csv");
+            File csv = new File("/home/seth/Documentos/DocumentosGeneradosXD/" + fechaHoraFormateada + "reporte.csv");
             FileWriter excel = new FileWriter(csv);
             excel.append("Origen, Asunto, Leido, Respondido\n");
-            List<Conversacion> varConver = Mail.leerJSON();
-            for (Conversacion varC : varConver) {
-                Mensaje msj = varC.getMensajes().get(0);
+            for (int i = 1; i<= db.countConversacion();i++) {
+                List<Mensaje> msjs = db.findMensajesByConversacion(i);
+                Mensaje msj = msjs.get(0);
                 //JOptionPane.showMessageDialog(null, msj.getCorreoEmisor()+"<-> "+(msj.getCorreoReceptor() == correoEmisor));
 
                 if (msj.getCorreoEmisor().equals(correoEmisor) || msj.getCorreoReceptor().equals(correoEmisor)) {
                     int posicion = 0;
-                    JOptionPane.showMessageDialog(null, "Entrada 1");
-                    for (Mensaje menmen : varC.getMensajes()) {
+                    for (Mensaje menmen : msjs) {
                         if (!menmen.getCorreoEmisor().equals(correoEmisor)) {
-                            JOptionPane.showMessageDialog(null, "Entrada2");
                             excel.append(menmen.getCorreoEmisor() + "," + menmen.getAsunto() + "," + menmen.isLeido() + ",");
-                            if (varC.getMensajes().size() - 1 > posicion) {
-                                JOptionPane.showMessageDialog(null, "Entrada3");
-                                if (varC.getMensajes().get(posicion + 1).getCorreoEmisor().equals(correoEmisor)) {
+                            if (msjs.size() - 1 > posicion) {
+                                if (msjs.get(posicion + 1).getCorreoEmisor().equals(correoEmisor)) {
                                     excel.append("si\n");
                                 }
                             } else {
@@ -738,10 +753,9 @@ public class Mail extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Save data...");
             Desktop.getDesktop().open(csv);
 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
     }//GEN-LAST:event_jLabel6MouseClicked
 
@@ -797,14 +811,14 @@ public class Mail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnEnviar;
+    private javax.swing.JLabel btnTodos;
+    private javax.swing.JLabel btnUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -829,7 +843,7 @@ public class Mail extends javax.swing.JFrame {
     private org.edisoncor.gui.panel.PanelImage panelImage3;
     // End of variables declaration//GEN-END:variables
 ////METODO DE MOSTRAR MENSAJE////////////////////////////////
-
+/*
     public static void actualizarJSON(Mensaje nuevoMensaje, int indiceConversacion) {
         List<Conversacion> conversaciones = leerJSON();
 
@@ -881,5 +895,5 @@ public class Mail extends javax.swing.JFrame {
 
         escribirJSON(conversaciones);
     }
-
+*/
 }

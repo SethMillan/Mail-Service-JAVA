@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane; 
+import proyecto.objetos.DBManager;
 import proyecto.objetos.Mensaje;
 
 /**
@@ -70,7 +71,7 @@ public class Responder extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jPanel11 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        btnSend = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -86,7 +87,7 @@ public class Responder extends javax.swing.JFrame {
         jTextField2.setForeground(new java.awt.Color(153, 153, 153));
         jTextField2.setText("correo@gmail.com");
         jTextField2.setBorder(javax.swing.BorderFactory.createTitledBorder("Correo"));
-        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField2FocusGained(evt);
@@ -102,7 +103,7 @@ public class Responder extends javax.swing.JFrame {
         jTextField3.setForeground(new java.awt.Color(153, 153, 153));
         jTextField3.setText("Asunto Urgentemente Importante");
         jTextField3.setBorder(javax.swing.BorderFactory.createTitledBorder("Asunto"));
-        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField3FocusGained(evt);
@@ -146,20 +147,20 @@ public class Responder extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(80, 114, 123));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Enviar");
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSend.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        btnSend.setForeground(new java.awt.Color(204, 204, 204));
+        btnSend.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSend.setText("Enviar");
+        btnSend.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSend.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
+                btnSendMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel8MouseEntered(evt);
+                btnSendMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel8MouseExited(evt);
+                btnSendMouseExited(evt);
             }
         });
 
@@ -167,11 +168,11 @@ public class Responder extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+            .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 110, 30));
@@ -185,7 +186,7 @@ public class Responder extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("x");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -247,20 +248,14 @@ public class Responder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextArea1MouseReleased
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        /*JOptionPane.showMessageDialog(null, "MENSAJE ENVIADO CORRECTAMENTE");
-        if(!conversaciones.isEmpty())
-        conversaciones.clear();
-
-        conversaciones.addAll(leerJSON());
-        Conversacion conv = new Conversacion();
-        Mensaje msj = new Mensaje(correoEmisor, jTextField2.getText(), jTextField3.getText(),jTextArea1.getText());
-        conv.getMensajes().add(msj);
-        conversaciones.add(conv);
-        escribirJSON(conversaciones);
-        */
-        Mensaje msj = new Mensaje(Mail.correoLog, jTextField2.getText(), jTextField3.getText(),jTextArea1.getText());
-        Mail.actualizarJSON(msj, index);
+    private void btnSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendMouseClicked
+        DBManager db = new DBManager();
+        System.out.println(index);
+        System.out.println(Mail.correoLog);
+        System.out.println(jTextField2.getText());
+        System.out.println(jTextField3.getText());
+        System.out.println(jTextArea1.getText());
+        db.addMensajeToConversacion( index, Mail.correoLog, jTextField2.getText(), jTextField3.getText(),jTextArea1.getText());
         jTextField2.setText("correo@gmail.com");
         jTextField2.setForeground(new Color(153,153,153));
         jTextField3.setText("Asunto Urgentemente Importante");
@@ -268,16 +263,17 @@ public class Responder extends javax.swing.JFrame {
         jTextArea1.setText("Escribe tu mensaje...");
         jTextArea1.setForeground(new Color(153,153,153));
         dispose();
+        JOptionPane.showMessageDialog(null, "MENSAJE ENVIADO CORRECTAMENTE BIEN EXCELENTEMENTE DE ACUERDO POSITIVAMENTE PERFECTO");
         new Mail(Mail.correoLog).setVisible(true);
-    }//GEN-LAST:event_jLabel8MouseClicked
+    }//GEN-LAST:event_btnSendMouseClicked
 
-    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
-        jLabel8.setForeground(Color.white);
-    }//GEN-LAST:event_jLabel8MouseEntered
+    private void btnSendMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendMouseEntered
+        btnSend.setForeground(Color.white);
+    }//GEN-LAST:event_btnSendMouseEntered
 
-    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
-        jLabel8.setForeground(new Color(204,204,204));
-    }//GEN-LAST:event_jLabel8MouseExited
+    private void btnSendMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendMouseExited
+        btnSend.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_btnSendMouseExited
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         dispose();
@@ -343,9 +339,9 @@ public class Responder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnSend;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;

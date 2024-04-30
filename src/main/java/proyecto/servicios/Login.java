@@ -347,7 +347,7 @@ public class Login extends javax.swing.JFrame {
         else{
             DBManager db = new DBManager();
             try {
-                Usuario usr = db.find(jTextField2.getText(), jPasswordField1.getText());
+                Usuario usr = db.findUser(jTextField2.getText(), jPasswordField1.getText());
                 if(usr!=null){
                    new Mail(jTextField2.getText()).setVisible(true);
                    dispose();
